@@ -32,3 +32,9 @@ plot_plastic_gdp(plastics_clean, year = 2020)
 
 This function should plot the total plastic count versus the gdp for each country for the year 2020. There should be one point for each country in the data.
 
+
+```{r}
+top_polluting_companies(plastics_clean, n = 10)
+```
+
+This function should return a table showing the companies with the highest number of plastic items in the dataset. The user can choose how many companies to show.

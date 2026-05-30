@@ -2,10 +2,13 @@
 % Please edit documentation in R/load_data.R
 \name{load_data}
 \alias{load_data}
-\title{Load in plastic data from Tidy Tuesday}
+\title{Load plastic pollution data}
 \usage{
 load_data()
 }
+\value{
+A data frame containing the plastic pollution data.
+}
 \description{
-Load in plastic data from Tidy Tuesday
+This function loads the original plastic pollution dataset from TidyTuesday.
 }

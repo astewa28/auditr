@@ -11,7 +11,9 @@ Roxygen: list(markdown = TRUE)
 RoxygenNote: 8.0.0
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 URL: https://github.com/astewa28/auditr
 BugReports: https://github.com/astewa28/auditr/issues
+Config/testthat/edition: 3

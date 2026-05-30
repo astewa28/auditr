@@ -1,11 +1,15 @@
-#' Cleans data loaded from load_dat
+#' Clean plastic pollution data
+#'
+#' Loads the plastic pollution dataset, replaces missing plastic-type counts
+#' with zero, and creates a row-level total.
 #'
 #' @importFrom tidyr replace_na
-#'
 #' @importFrom dplyr mutate across
 #'
-#' @return A cleaned dataset to be used for data analysis
+#' @return A cleaned tibble used internally by package functions.
 #'
+
+
 
 
 clean_data <- function(){

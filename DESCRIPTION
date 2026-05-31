@@ -3,7 +3,7 @@ Title: Plastic Data Analysis
 Version: 0.0.0.9000
 Authors@R:
     person("Avery", "Stewart", , "astewa28@calpoly.edu", role = c("aut", "cre"))
-     person("Justin", "Mai", , "jmai25@calpoly.edu", role = "aut"),
+     person("Justin", "Mai", , "jmai25@calpoly.edu", role = "aut")
      person("Jonathan", "Flores Martinez", , "first.last@example.com", role = "aut")
 Description: This package loads in data from BFFR from 2019 and 2020 about plastic waste for different countries measured through audits then performs a data analysis on this data to uncover which enviromental, economic, and demographic factors, if any, contribute the most to plastic pollution. The goal of this package is to shed light on the companies that seem to contribute to plastic pollution the most.
 License: MIT + file LICENSE
@@ -18,3 +18,6 @@ VignetteBuilder: knitr
 URL: https://github.com/astewa28/auditr
 BugReports: https://github.com/astewa28/auditr/issues
 Config/testthat/edition: 3
+Depends: 
+    R (>= 3.5)
+LazyData: true

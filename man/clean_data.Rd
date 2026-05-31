@@ -2,13 +2,14 @@
 % Please edit documentation in R/clean_data.R
 \name{clean_data}
 \alias{clean_data}
-\title{Cleans data loaded from load_dat}
+\title{Clean plastic pollution data}
 \usage{
 clean_data()
 }
 \value{
-A cleaned dataset to be used for data analysis
+A cleaned tibble used internally by package functions.
 }
 \description{
-Cleans data loaded from load_dat
+Loads the plastic pollution dataset, replaces missing plastic-type counts
+with zero, and creates a row-level total.
 }

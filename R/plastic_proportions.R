@@ -6,9 +6,20 @@
 #'
 #' @param years A numeric or character vector of one or two years to be included in the table
 #'
-#' @importFrom dplyr mutate group_by summarize filter across
-#' @importFrom gt gt fmt_percent tab_style tab_caption cols_move_to_end cols_label
-#'   cell_text cells_column_labels
+#' @importFrom dplyr mutate
+#' @importFrom dplyr group_by
+#' @importFrom dplyr summarize
+#' @importFrom dplyr filter
+#' @importFrom dplyr across
+#'
+#' @importFrom gt gt
+#' @importFrom gt fmt_percent
+#' @importFrom gt tab_style
+#' @importFrom gt tab_caption
+#' @importFrom gt cols_move_to_end
+#' @importFrom gt cols_label
+#' @importFrom gt cell_text
+#' @importFrom gt cells_column_labels
 #'
 #' @return A GT table with proportions.
 #'

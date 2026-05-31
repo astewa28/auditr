@@ -86,11 +86,11 @@ density_ploter <- function(data, selected_year = 2019,
       "Middle Income" = "#009E73",
       "Low Income"    = "#0072B2")) +
     labs(
-      title = "Plastic Waste Type Distribution of Countries by GDP per Capita",
+      title = glue::glue("Plastic Waste Type Distribution of Countries by GDP per Capita ({selected_year})"),
       subtitle = "Divided into <span style='color: #E69F00;'>High Income</span>,
       <span style='color: #009E73;'>Middle Income</span>,
     and <span style='color: #0072B2;'>Low Income</span>",
-      x = "Plastic Waste Units Audited",
+      x = glue::glue("Plastic Waste Units Audited cut at {cutoff}"),
       y = "",
       alt = "Density ridge plot showing the density of plastic waste audited
     for multiple types of plastic. Colored by GDP per capita category,

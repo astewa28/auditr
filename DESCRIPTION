@@ -28,4 +28,5 @@ Imports:
     readr,
     tidyr,
     ggridges,
-    ggtext
+    ggtext,
+    glue

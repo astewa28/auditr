@@ -37,6 +37,13 @@ plastic_proportions <- function(countries = NULL, years = NULL){
     stop("years must be a numeric or character vector.", call. = FALSE)
   }
 
+  if (!is.null(countries) && length(countries) == 0) {
+    stop("countries must contain at least one country.", call. = FALSE)
+  }
+
+  if (!is.null(years) && length(years) == 0) {
+    stop("years must contain at least one year.", call. = FALSE)
+  }
   dat <- clean_data()
 
   result <- dat |>

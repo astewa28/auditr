@@ -1,7 +1,7 @@
 Package: auditr
 Title: Plastic Data Analysis
 Version: 0.0.0.9000
-Authors@R:c(
+Authors@R: c(
     person("Avery", "Stewart", ,"astewa28@calpoly.edu", role = c("aut", "cre")),
      person("Justin", "Mai", ,"jmai25@calpoly.edu", role = "aut"),
      person("Jonathan", "Flores Martinez", ,"jflor201@calpoly.edu", role = "aut"))
@@ -21,3 +21,11 @@ Config/testthat/edition: 3
 Depends: 
     R (>= 3.5)
 LazyData: true
+Imports:
+    dplyr,
+    ggplot2,
+    gt,
+    readr,
+    tidyr,
+    ggridges,
+    ggtext

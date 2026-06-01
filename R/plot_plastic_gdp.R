@@ -28,6 +28,11 @@ density_ploter <- function(data, selected_year = 2019,
 
   allowed_types <- c("unknown", "hdpe", "ldpe","other",
                      "pet", "pp", "ps", "pvc")
+
+  if (!is.character(chosen_types)) {
+    stop("chosen_types must be a character vector.", call. = FALSE)
+  }
+
   if (!all(chosen_types %in% allowed_types)) {
     stop("plastic_type is not in dataframe")
   }
@@ -37,10 +42,20 @@ density_ploter <- function(data, selected_year = 2019,
     stop("year must be either 2019 or 2020")
   }
 
+  if (!is.numeric(selected_year) || length(selected_year) != 1) {
+    stop("selected_year must be one numeric value.", call. = FALSE)
+  }
+
+  if (!is.numeric(cutoff) || length(cutoff) != 1 || cutoff <= 0) {
+    stop("cutoff must be one positive numeric value.", call. = FALSE)
+  }
+
+
+
   data |>
     filter(year == selected_year) |>
     dplyr::group_by(country) |>
-    dlpyr::summarize(unknown = sum(empty),
+    dplyr::summarize(unknown = sum(empty),
                      hdpe = sum(hdpe),
                      ldpe = sum(ldpe),
                      other = sum(o),
@@ -71,11 +86,11 @@ density_ploter <- function(data, selected_year = 2019,
       "Middle Income" = "#009E73",
       "Low Income"    = "#0072B2")) +
     labs(
-      title = "Plastic Waste Type Distribution of Countries by GDP per Capita",
+      title = glue::glue("Plastic Waste Type Distribution of Countries by GDP per Capita ({selected_year})"),
       subtitle = "Divided into <span style='color: #E69F00;'>High Income</span>,
       <span style='color: #009E73;'>Middle Income</span>,
     and <span style='color: #0072B2;'>Low Income</span>",
-      x = "Plastic Waste Units Audited",
+      x = glue::glue("Plastic Waste Units Audited cut at {cutoff}"),
       y = "",
       alt = "Density ridge plot showing the density of plastic waste audited
     for multiple types of plastic. Colored by GDP per capita category,

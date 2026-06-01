@@ -1,0 +1,90 @@
+
+
+stat_analysis <- function(fixed_vars = c("log_population",
+                                         "log_pop_density",
+                                         "log_gdp_billions",
+                                         "year", "region")){
+
+  first_nonmissing <- function(x) {
+    x <- x[!is.na(x)]
+    if (length(x) == 0) NA else x[1]
+  }
+
+  model_df <- load_data() |>
+    dplyr::group_by(country, year) |>
+    dplyr::summarise(
+      total_plastic = sum(total, na.rm = TRUE),
+      Population_millions = first_nonmissing(Population) / 1000000,
+      pop_density = first_nonmissing(pop_density),
+      gdp_billions = first_nonmissing(gdp) / 1000000000,
+      region = first_nonmissing(region),
+      .groups = "drop"
+    ) |>
+    dplyr::mutate(
+      country = factor(country),
+      year = factor(year),
+      region = factor(region),
+      log_total_plastic = log(total_plastic),
+      log_population = log(Population_millions),
+      log_pop_density = log(pop_density),
+      log_gdp_billions = log(gdp_billions)
+    )
+
+  dep_var    <- "log_total_plastic"
+
+  random_var <- "country"
+
+  formula_string <- sprintf("%s ~ %s + (1 | %s)",
+                            dep_var,
+                            paste(fixed_vars, collapse = " + "),
+                            random_var)
+
+
+
+  model_formula <- as.formula(formula_string)
+  fit_final_maybe <- lmer(formula = model_formula, data = model_df)
+
+
+  label_map <- c(
+    log_total_plastic = "Log Total Plastic",
+    log_population = "Log Population",
+    log_pop_density = "Log Population Density",
+    log_gdp_billions = "Log GDP (billions)",
+    total_plastic = "Total Plastic",
+    Population_millions = "Population (millions)",
+    pop_density = "Population Density",
+    gdp_billions = "GDP (billions)",
+    year = "Year",
+    region = "Region",
+    country = "Country"
+  )
+
+
+  anova(fit_final_maybe) |>
+    as.data.frame() |>
+    tibble::rownames_to_column("Predictor") |>
+    dplyr::mutate(
+      Predictor = dplyr::recode(
+        Predictor,
+        !!!label_map,
+        .default = Predictor
+      )
+    ) |>
+    gt() |>
+    tab_header(
+      title = md("**Type III ANOVA for Final Mixed Model**"),
+      subtitle = "Satterthwaite's method"
+    ) |>
+    fmt_number(
+      columns = where(is.numeric),
+      decimals = 3
+    ) |>
+    tab_style(
+      style = list(
+        cell_text(weight = "bold")
+      ),
+      locations = cells_body(
+        rows = Predictor == "Log Population"
+      )
+    )
+  }

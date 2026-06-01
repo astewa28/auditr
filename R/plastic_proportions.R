@@ -15,7 +15,7 @@
 #' @export
 #'
 #' @examples
-#' plastic_proportions(c("Canada", "Argentina), 2019)
+#' plastic_proportions(c("Canada", "Argentina"), 2019)
 #' plastic_proportions("China", 2020)
 
 

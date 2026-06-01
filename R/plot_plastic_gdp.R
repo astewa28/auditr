@@ -17,7 +17,7 @@
 #' @returns a plot
 #' @export
 #'
-#' @examples density_ploter(final_merged,
+#' @examples density_ploter(load_data(),
 #'                          selected_year = 2020,
 #'                          cutoff = 2000,
 #'                          chosen_types = c("hdpe", "pvc", "other"))

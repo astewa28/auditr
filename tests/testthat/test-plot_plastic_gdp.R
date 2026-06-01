@@ -1,4 +1,4 @@
-test_that("output creates a plot", {
+testthat::test_that("output creates a plot", {
   df <- load_full_data()
   density_plot1 <- density_ploter(data = df,
                                   selected_year = 2020,

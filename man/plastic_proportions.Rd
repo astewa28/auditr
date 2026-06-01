@@ -17,3 +17,7 @@ A GT table with proportions.
 \description{
 This function creates a table displaying the proportion of each plastic type for a specified country and year.
 }
+\examples{
+plastic_proportions(c("Canada", "Argentina"), 2019)
+plastic_proportions("China", 2020)
+}

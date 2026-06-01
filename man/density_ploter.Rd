@@ -27,7 +27,7 @@ a plot
 Plots a density ridge plot comparing the density of plastic type audit amounts to gdp based on user inputs
 }
 \examples{
-density_ploter(final_merged,
+density_ploter(load_data(),
                          selected_year = 2020,
                          cutoff = 2000,
                          chosen_types = c("hdpe", "pvc", "other"))

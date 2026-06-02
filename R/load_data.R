@@ -7,9 +7,8 @@
 #' @export
 
 load_data <- function(){
-
-  arrow::read_csv_arrow('inst/merged_data.csv')
-
+  path <- system.file("merged_data.csv", package = "auditr")
+  arrow::read_csv_arrow(path, as_data_frame = TRUE)
 }
 
 

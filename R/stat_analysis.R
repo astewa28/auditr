@@ -1,4 +1,26 @@
-
+#' stat_analysis
+#'
+#' Fits a mixed-effects model analyzing log total plastic pollution based on
+#' user-selected predictors with Country as a random effect and creates a
+#' formatted Type III ANOVA table for the mixed-effects model
+#'
+#' @param fixed_vars Character vector of fixed-effect predictor variables to
+#' include in the mixed-effects model. Defaults to log population,
+#' log population density, log GDP, year, and region.
+#'
+#'
+#' @returns A formatted gt table containing the specified variables in the model
+#'
+#' @importFrom dplyr group_by summarise mutate recode
+#' @importFrom tibble rownames_to_column
+#' @importFrom lmerTest lmer
+#' @importFrom stats anova as.formula
+#' @importFrom gt gt tab_header md fmt_number tab_style cell_text cells_body
+#' @importFrom tidyselect where
+#'
+#' @export
+#'
+#' @examples stat_analysis(chosen_types = c("log_population", "year", "region"))
 
 stat_analysis <- function(fixed_vars = c("log_population",
                                          "log_pop_density",

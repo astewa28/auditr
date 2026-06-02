@@ -10,8 +10,7 @@
 #'  size is population.
 #'
 #' @importFrom dplyr filter mutate group_by summarize
-#' @importFrom ggplot2 ggplot aes geom_point scale_size labs coord_cartesian
-#'   scale_x_sqrt facet_wrap theme_light scale_color_manual
+#' @importFrom ggplot2 ggplot aes geom_point scale_size labs coord_cartesian scale_x_sqrt facet_wrap theme_light scale_color_manual
 #' @importFrom countrycode countrycode
 #'
 #' @examples

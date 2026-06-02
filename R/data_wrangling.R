@@ -16,6 +16,8 @@ rate_ify2 <- function(df, numerators, denominator) {
 
   df |>
     mutate(across(.cols = {{ numerators }},
-                  .fns = ~ .x / {{ denominator }},
+                  .fns = ~ ifelse({{denominator}} == 0,
+                                  NA_real_,
+                                  .x / {{ denominator }}),
                   .names = "{.col}"))
 }

@@ -37,7 +37,15 @@ plastic_proportions <- function(countries = NULL, years = NULL){
   if (!is.null(years) && length(years) == 0) {
     stop("years must contain at least one year.", call. = FALSE)
   }
+
+  countries <- str_to_title(countries)
+
+
   dat <- clean_data()
+
+  if(is.null(countries %in% dat$country)){
+    warning("Provided countries not in dataset.")
+  }
 
   result <- dat |>
     dplyr::mutate(year = factor(year)) |>
@@ -49,6 +57,7 @@ plastic_proportions <- function(countries = NULL, years = NULL){
     dplyr::mutate(dplyr::across(empty:pvc, ~ .x / grand_total)) |>
     dplyr::select(-grand_total)
 
+
   if (!is.null(countries)) {
     result <- dplyr::filter(result, country %in% countries)
   }
@@ -56,6 +65,7 @@ plastic_proportions <- function(countries = NULL, years = NULL){
   if (!is.null(years)) {
     result <- dplyr::filter(result, year %in% as.character(years))
   }
+
 
   result |>
     gt::gt() |>

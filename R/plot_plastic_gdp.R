@@ -7,11 +7,8 @@
 #' @param cutoff optional, default 3500. the cutoff for the density plot x axis. Can be useful to ignore large out liars or to zoom into the most common audit amounts
 #' @param chosen_types optional, default includes: unknown, hdpe, ldpe, other, pet, pp, ps, pvc. what type of plastic is to be compared to eachother
 #'
-#' @importFrom dplyr filter
-#' @importFrom dplyr mutate
-#' @importFrom ggplot2 aes
-#' @importFrom ggplot2 labs
-#' @importFrom ggplot2 theme
+#' @importFrom dplyr filter mutate
+#' @importFrom ggplot2 aes labs theme
 
 #'
 #' @returns a plot

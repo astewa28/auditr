@@ -22,14 +22,58 @@
 #'
 #' @examples stat_analysis(chosen_types = c("log_population", "year", "region"))
 
-stat_analysis <- function(fixed_vars = c("log_population",
-                                         "log_pop_density",
-                                         "log_gdp_billions",
-                                         "year", "region")){
+stat_analysis <- function(fixed_vars = c("Population",
+                                         "pop_density",
+                                         "gdp",
+                                         "year",
+                                         "region")){
+
+
+  if (!is.character(fixed_vars)) {
+    stop("fixed_vars must be a character vector.", call. = FALSE)
+  }
+
+  if (length(fixed_vars) == 0) {
+    stop("fixed_vars must contain at least one predictor variable.", call. = FALSE)
+  }
+
+  if (anyNA(fixed_vars)) {
+    stop("fixed_vars cannot contain NA values.", call. = FALSE)
+  }
+
+  if (any(fixed_vars == "")) {
+    stop("fixed_vars cannot contain empty strings.", call. = FALSE)
+  }
 
   first_nonmissing <- function(x) {
     x <- x[!is.na(x)]
     if (length(x) == 0) NA else x[1]
+  }
+
+
+  model_var_map <- c(
+    Population = "log_population",
+    pop_density = "log_pop_density",
+    gdp = "log_gdp_billions",
+    year = "year",
+    region = "region"
+  )
+
+  valid_fixed_vars <- names(model_var_map)
+
+  invalid_vars <- setdiff(fixed_vars, valid_fixed_vars)
+
+  if (length(invalid_vars) > 0) {
+    stop(
+      paste0(
+        "Invalid fixed_vars: ",
+        paste(invalid_vars, collapse = ", "),
+        ". Valid choices are: ",
+        paste(valid_fixed_vars, collapse = ", "),
+        "."
+      ),
+      call. = FALSE
+    )
   }
 
   model_df <- load_data() |>
@@ -52,13 +96,15 @@ stat_analysis <- function(fixed_vars = c("log_population",
       log_gdp_billions = log(gdp_billions)
     )
 
-  dep_var    <- "log_total_plastic"
+  dep_var <- "log_total_plastic"
 
   random_var <- "country"
 
+  model_fixed_vars <- unname(model_var_map[fixed_vars])
+
   formula_string <- sprintf("%s ~ %s + (1 | %s)",
                             dep_var,
-                            paste(fixed_vars, collapse = " + "),
+                            paste(model_fixed_vars, collapse = " + "),
                             random_var)
 
 

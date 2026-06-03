@@ -16,7 +16,7 @@
 clean_data <- function(){
   dat <- load_data()
 
-  dat_clean <- dat |>
+  dat |>
     mutate(across(empty:pvc, ~tidyr::replace_na(., 0)),
            total = rowSums(across(c(empty:pvc))),
            .before = num_events,

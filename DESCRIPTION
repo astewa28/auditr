@@ -29,4 +29,11 @@ Imports:
     tidyr,
     ggridges,
     ggtext,
-    glue
+    glue,
+    countrycode,
+    lmerTest,
+    stringr,
+    tibble,
+    tidyselect,
+    stats,
+    arrow

@@ -15,7 +15,7 @@
 #'
 #' @examples
 #' bubble_plotter(c("United States of America", "Canada", "Nigeria"))
-#' bubble_plotter("Taiwan")
+#' bubble_plotter("Nigeria")
 #'
 #' @export
 

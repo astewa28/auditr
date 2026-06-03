@@ -6,12 +6,15 @@
 #' @param numerators single column or vector of columns to be rate-ified. Tidy eval compatible
 #' @param denominator single denominator column used to create the rate along with the numerators
 #'
+#' @importFrom dplyr mutate across
+#'
+#'
 #' @returns a data set with rate-ified columns
 #' @export
 #'
 #' @examples
-#' data_wrangling(df = load_data(), numerator = hdpe:pvc, denominator = total_waste)
-data_wrangling <- function(df, numerators, denominator) {
+#' rate_ify2(df = load_data(), numerator = hdpe:pvc, denominator = total_waste)
+rate_ify2 <- function(df, numerators, denominator) {
   stopifnot(is.data.frame(df))
 
   df |>

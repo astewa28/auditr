@@ -20,6 +20,6 @@ years 2019 and 2020.
 }
 \examples{
 bubble_plotter(c("United States of America", "Canada", "Nigeria"))
-bubble_plotter("Taiwan")
+bubble_plotter("Nigeria")
 
 }

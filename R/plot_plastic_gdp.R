@@ -18,7 +18,7 @@
 #'                          selected_year = 2020,
 #'                          cutoff = 2000,
 #'                          chosen_types = c("hdpe", "pvc", "other"))
-density_ploter <- function(data, selected_year = 2019,
+density_plotter <- function(data, selected_year = 2019,
                            cutoff = 3500,
                            chosen_types = c("unknown", "hdpe", "ldpe","other",
                                             "pet", "pp", "ps", "pvc")) {

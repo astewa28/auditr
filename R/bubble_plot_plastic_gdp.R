@@ -24,6 +24,12 @@
 bubble_plotter <- function(countries) {
   dat <- load_data()
 
+  countries <- str_to_title(countries)
+
+  if(!any(countries %in% dat$country)){
+    stop("Provided countries not in dataset.")
+  }
+
   dat |>
     filter(country %in% countries) |>
     mutate(

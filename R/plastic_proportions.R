@@ -44,7 +44,7 @@ plastic_proportions <- function(countries = NULL, years = NULL){
   dat <- clean_data()
 
   if(!any(countries %in% dat$country)){
-    warning("Provided countries not in dataset.")
+    stop("Provided countries not in dataset.")
   }
 
   result <- dat |>

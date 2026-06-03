@@ -47,6 +47,4 @@ testthat::test_that("input validation works", {
   testthat::expect_warning(
     plastic_proportions(countries = "Fakecountry", years = 2019))
 
-
-
 })

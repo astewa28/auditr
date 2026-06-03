@@ -1,6 +1,6 @@
 testthat::test_that("output creates a plot", {
   data(load_data(), package = "auditr", envir = environment())
-  density_plot1 <- auditr::density_ploter(
+  density_plot1 <- auditr::density_plotter(
     data = load_data(),
     selected_year = 2020,
     cutoff = 2000,
@@ -12,7 +12,7 @@ testthat::test_that("output creates a plot", {
 
 testthat::test_that("density_ploter works with different inputs", {
   data(load_data(), package = "auditr", envir = environment())
-  density_plot2 <- auditr::density_ploter(
+  density_plot2 <- auditr::density_plotter(
     data = load_data(),
     selected_year = 2019,
     cutoff = 1000,
@@ -25,7 +25,7 @@ testthat::test_that("density_ploter works with different inputs", {
 testthat::test_that("density_ploter rejects invalid year", {
   data(load_data(), package = "auditr", envir = environment())
   testthat::expect_error(
-    auditr::density_ploter(
+    auditr::density_plotter(
       data = load_data(),
       selected_year = 2021,
       cutoff = 2000,

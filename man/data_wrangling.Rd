@@ -20,5 +20,5 @@ a data set with rate-ified columns
 turns selected columns into rates based on a denominator column
 }
 \examples{
-rate_ify2(df = load_data(), numerator = hdpe:pvc, denominator = total_waste)
+data_wrangling(df = load_data(), numerator = hdpe:pvc, denominator = total_waste)
 }

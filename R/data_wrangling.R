@@ -10,7 +10,7 @@
 #' @export
 #'
 #' @examples
-#' rate_ify2(df = load_data(), numerator = hdpe:pvc, denominator = total_waste)
+#' data_wrangling(df = load_data(), numerator = hdpe:pvc, denominator = total_waste)
 data_wrangling <- function(df, numerators, denominator) {
   stopifnot(is.data.frame(df))
 

@@ -20,7 +20,7 @@ library(auditr)
 
 
 ```{r}
-plastic_proportions(country = "Argentina", year = 2019)
+plastic_proportions(countries = c("Argentina", "Canada"), years = 2019)
 ```
 
 This should make a summary table of the proportions of each plastic type over all companies found in the Argentina audits for the year 2019.
@@ -40,7 +40,28 @@ This function should plot the total plastic count versus the gdp for each countr
 
 
 ```{r}
-bubble_plotter()
+bubble_plotter(countries = c("China", "United States of America", "Nigeria"))
 ```
 
-This function should return a table showing the companies with the highest number of plastic items in the dataset. The user can choose how many companies to show.
+This function should make a bubble plot for the chosen countries showing the total
+plastic waste vs the country's GDP with bubble size as the population of the country for 
+the years 2019 and 2020.
+
+
+```{r}
+load_data()
+```
+
+This function loads in the final merged dataset that was used in creating this analysis.
+
+
+```{r}
+auditr:::clean_data()
+```
+
+
+
+```{r}
+stat_analysis()
+```
+

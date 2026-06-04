@@ -5,8 +5,7 @@
 \title{stat_analysis}
 \usage{
 stat_analysis(
-  fixed_vars = c("log_population", "log_pop_density", "log_gdp_billions", "year",
-    "region")
+  fixed_vars = c("Population", "pop_density", "gdp", "year", "region")
 )
 }
 \arguments{

@@ -10,6 +10,7 @@
 #'
 #' @importFrom gt gt fmt_percent tab_style tab_caption cols_move_to_end cols_label cell_text cells_column_labels
 #'
+#' @importFrom stringr str_to_title
 #' @return A GT table with proportions.
 #'
 #' @export

@@ -7,8 +7,12 @@
 #' @param cutoff optional, default 3500. the cutoff for the density plot x axis. Can be useful to ignore large out liars or to zoom into the most common audit amounts
 #' @param chosen_types optional, default includes: unknown, hdpe, ldpe, other, pet, pp, ps, pvc. what type of plastic is to be compared to eachother
 #'
-#' @importFrom dplyr filter mutate
-#' @importFrom ggplot2 aes labs theme
+#' @importFrom dplyr filter mutate group_by summarize across rename case_when
+#' @importFrom ggplot2 ggplot aes labs theme theme_minimal scale_fill_manual
+#' @importFrom tidyr pivot_longer
+#' @importFrom ggridges geom_density_ridges
+#' @importFrom glue glue
+#' @importFrom ggtext element_markdown
 
 #'
 #' @returns a plot
@@ -58,44 +62,44 @@ density_plotter <- function(data = load_data(),
 
   data |>
     filter(year == selected_year) |>
-    dplyr::group_by(country) |>
-    dplyr::summarize(dplyr::across(.cols = c(empty, hdpe, ldpe, o,
-                                             pet, pp, ps, pvc, total),
-                                   .fns = ~sum(.x, na.rm = TRUE)),
-                     gdp_per_capita = mean(gdp_per_capita),
-                     hdi = mean(HDI),
-                     .groups = "drop") |>
-    dplyr::rename(unknown = empty,
-                  other = o) |>
-    mutate(income_group = dplyr::case_when(
+    group_by(country) |>
+    summarize(across(.cols = c(empty, hdpe, ldpe, o,
+                               pet, pp, ps, pvc, total),
+                     .fns = ~sum(.x, na.rm = TRUE)),
+              gdp_per_capita = mean(gdp_per_capita),
+              hdi = mean(HDI),
+              .groups = "drop") |>
+    rename(unknown = empty,
+           other = o) |>
+    mutate(income_group = case_when(
       gdp_per_capita < 1500 ~ "Low Income",
       gdp_per_capita > 12000 ~ "High Income",
       TRUE ~ "Middle Income")) |>
-    tidyr::pivot_longer(
+    pivot_longer(
       cols = unknown:pvc,
       names_to = "plastic_type",
       values_to = "waste") |>
     filter(waste <= cutoff, plastic_type %in% chosen_types) |>
 
-    ggplot2::ggplot(mapping = aes(x = waste,
-                                  y = plastic_type,
-                                  fill = income_group)) +
-    ggridges::geom_density_ridges(alpha = 0.7) +
-    ggplot2::scale_fill_manual(values = c(
+    ggplot(mapping = aes(x = waste,
+                         y = plastic_type,
+                         fill = income_group)) +
+    geom_density_ridges(alpha = 0.7) +
+    scale_fill_manual(values = c(
       "High Income"   = "#E69F00",
       "Middle Income" = "#009E73",
       "Low Income"    = "#0072B2")) +
     labs(
-      title = glue::glue("Plastic Waste Type Distribution of Countries by GDP per Capita ({selected_year})"),
+      title = glue("Plastic Waste Type Distribution of Countries by GDP per Capita ({selected_year})"),
       subtitle = "Divided into <span style='color: #E69F00;'>High Income</span>,
       <span style='color: #009E73;'>Middle Income</span>,
     and <span style='color: #0072B2;'>Low Income</span>",
-      x = glue::glue("Plastic Waste Units Audited cut at {cutoff}"),
+      x = glue("Plastic Waste Units Audited cut at {cutoff}"),
       y = "",
       alt = "Density ridge plot showing the density of plastic waste audited
     for multiple types of plastic. Colored by GDP per capita category,
     High, Middle, and Low") +
-    ggplot2::theme_minimal() +
-    theme(plot.subtitle =  ggtext::element_markdown(),
+    theme_minimal() +
+    theme(plot.subtitle =  element_markdown(),
           legend.position = "none")
 }

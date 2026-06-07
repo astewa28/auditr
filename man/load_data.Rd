@@ -2,13 +2,13 @@
 % Please edit documentation in R/load_data.R
 \name{load_data}
 \alias{load_data}
-\title{Load plastic pollution data}
+\title{Load merged plastic pollution data}
 \usage{
 load_data()
 }
 \value{
-A data frame containing the plastic pollution data.
+A data frame containing the merged plastic pollution data.
 }
 \description{
-This function loads the original plastic pollution dataset from TidyTuesday.
+This function loads the merged plastic pollution dataset stored in the package.
 }

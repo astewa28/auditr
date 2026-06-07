@@ -18,10 +18,17 @@
 #'                          selected_year = 2020,
 #'                          cutoff = 2000,
 #'                          chosen_types = c("hdpe", "pvc", "other"))
-density_plotter <- function(data, selected_year = 2019,
-                           cutoff = 3500,
-                           chosen_types = c("unknown", "hdpe", "ldpe","other",
-                                            "pet", "pp", "ps", "pvc")) {
+density_plotter <- function(data = load_data(),
+                            selected_year = 2019,
+                            cutoff = 3500,
+                            chosen_types = c("unknown",
+                                             "hdpe",
+                                             "ldpe",
+                                             "other",
+                                             "pet",
+                                             "pp",
+                                             "ps",
+                                             "pvc")) {
 
   allowed_types <- c("unknown", "hdpe", "ldpe","other",
                      "pet", "pp", "ps", "pvc")
@@ -52,18 +59,14 @@ density_plotter <- function(data, selected_year = 2019,
   data |>
     filter(year == selected_year) |>
     dplyr::group_by(country) |>
-    dplyr::summarize(unknown = sum(empty),
-                     hdpe = sum(hdpe),
-                     ldpe = sum(ldpe),
-                     other = sum(o),
-                     pet = sum(pet),
-                     pp = sum(pp),
-                     ps = sum(ps),
-                     pvc = sum(pvc),
-                     total = sum(total),
+    dplyr::summarize(dplyr::across(.cols = c(empty, hdpe, ldpe, o,
+                                             pet, pp, ps, pvc, total),
+                                   .fns = ~sum(.x, na.rm = TRUE)),
                      gdp_per_capita = mean(gdp_per_capita),
                      hdi = mean(HDI),
                      .groups = "drop") |>
+    dplyr::rename(unknown = empty,
+                  other = o) |>
     mutate(income_group = dplyr::case_when(
       gdp_per_capita < 1500 ~ "Low Income",
       gdp_per_capita > 12000 ~ "High Income",

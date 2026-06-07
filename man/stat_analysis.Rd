@@ -22,5 +22,5 @@ user-selected predictors with Country as a random effect and creates a
 formatted Type III ANOVA table for the mixed-effects model
 }
 \examples{
-stat_analysis(chosen_types = c("log_population", "year", "region"))
+stat_analysis(fixed_vars = c("Population", "year", "region"))
 }

@@ -19,6 +19,15 @@ library(auditr)
 ```
 
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+
 ```{r}
 plastic_proportions(countries = c("Argentina", "Canada"), years = 2019)
 ```
@@ -64,4 +73,5 @@ auditr:::clean_data()
 ```{r}
 stat_analysis()
 ```
+
 

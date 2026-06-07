@@ -4,7 +4,7 @@
 \alias{rate_ify2}
 \title{rate_ify2}
 \usage{
-rate_ify2(df, numerators, denominator)
+rate_ify2(df = load_data(), numerators = empty:pvc, denominator = grand_total)
 }
 \arguments{
 \item{df}{a dataset with information to be rate-ified}

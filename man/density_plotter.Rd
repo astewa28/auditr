@@ -5,7 +5,7 @@
 \title{density_plotter}
 \usage{
 density_plotter(
-  data,
+  data = load_data(),
   selected_year = 2019,
   cutoff = 3500,
   chosen_types = c("unknown", "hdpe", "ldpe", "other", "pet", "pp", "ps", "pvc")

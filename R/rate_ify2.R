@@ -14,7 +14,9 @@
 #'
 #' @examples
 #' rate_ify2(df = load_data(), numerator = hdpe:pvc, denominator = grand_total)
-rate_ify2 <- function(df, numerators, denominator) {
+rate_ify2 <- function(df = load_data(),
+                      numerators = empty:pvc,
+                      denominator = grand_total) {
   stopifnot(is.data.frame(df))
 
   df |>

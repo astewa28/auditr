@@ -1,9 +1,9 @@
-#' Load plastic pollution data
+#' Load merged plastic pollution data
 #'
-#' This function loads the original plastic pollution dataset from TidyTuesday.
+#' This function loads the merged plastic pollution dataset stored in the package.
 #'
-#' @return A data frame containing the plastic pollution data.
-#' @importFrom readr read_csv
+#' @return A data frame containing the merged plastic pollution data.
+#' @importFrom arrow read_csv_arrow
 #' @export
 
 load_data <- function(){

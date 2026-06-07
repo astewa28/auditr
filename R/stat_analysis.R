@@ -20,7 +20,7 @@
 #'
 #' @export
 #'
-#' @examples stat_analysis(chosen_types = c("log_population", "year", "region"))
+#' @examples stat_analysis(fixed_vars = c("Population", "year", "region"))
 
 stat_analysis <- function(fixed_vars = c("Population",
                                          "pop_density",

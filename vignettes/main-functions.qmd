@@ -18,23 +18,69 @@ knitr::opts_chunk$set(
 library(auditr)
 ```
 
+## Load data
 
 ```{r}
-plastic_proportions(plastics_clean, country = "Argentina", year = 2019)
+dat <- load_data()
+head(dat)
 ```
 
-This should make a summary table of the proportions of each plastic type over all companies found in the Argentina audits for the year 2019.
+This function loads the merged plastic pollution dataset stored in the package.
 
+## Clean data
 
 ```{r}
-plot_plastic_gdp(plastics_clean, year = 2020)
+cleaned <- clean_data()
+head(cleaned)
 ```
 
-This function should plot the total plastic count versus the gdp for each country for the year 2020. There should be one point for each country in the data.
+This function cleans the plastic pollution data by replacing missing plastic type counts with zero, creating a row level total, and standardizing country names.
 
+## Plastic proportions
 
 ```{r}
-top_polluting_companies(plastics_clean, n = 10)
+plastic_proportions(countries = c("Argentina", "Canada"), years = 2019)
 ```
 
-This function should return a table showing the companies with the highest number of plastic items in the dataset. The user can choose how many companies to show.
+This function creates a table showing the proportion of each plastic type for selected countries and years.
+
+## Rate columns
+
+```{r}
+rate_ify2(
+  df = dat,
+  numerators = hdpe:pvc,
+  denominator = grand_total
+)
+```
+
+This function converts selected plastic count columns into rates using a denominator column.
+
+## Density plot
+
+```{r}
+density_plotter(
+  data = dat,
+  selected_year = 2020,
+  cutoff = 2000,
+  chosen_types = c("hdpe", "pvc", "other")
+)
+```
+
+This function creates a density ridge plot comparing plastic audit amounts across income groups.
+
+## Bubble plot
+
+```{r}
+bubble_plotter(countries = c("China", "United States Of America", "Nigeria"))
+```
+
+This function creates a bubble plot comparing plastic pollution and GDP for selected countries.
+
+## Statistical analysis
+
+```{r}
+stat_analysis(fixed_vars = c("Population", "year", "region"))
+```
+
+This function fits a mixed-effects model and returns a formatted Type III ANOVA table.
